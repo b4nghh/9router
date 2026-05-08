@@ -1,0 +1,17 @@
+services:
+  9router:
+    container_name: 9router
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - PORT=${PORT:-20128}
+      - HOSTNAME=0.0.0.0
+      - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
+    volumes:
+      - 9router-data:/app/data
+
+volumes:
+  9router-data:
